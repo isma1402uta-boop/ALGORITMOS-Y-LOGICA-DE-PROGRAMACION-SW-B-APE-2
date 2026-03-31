@@ -1,0 +1,63 @@
+#include <iostream>
+#include <string>
+#include <limits>
+
+using namespace std;
+
+int LeerNumeros(string mensaje){
+    string texto;
+    int n;
+    while(true){
+        cout<<mensaje;
+        getline(cin, texto);
+        if(texto.empty()){
+            cout<<"Error. El campo se encuentra vacio: "<<endl;
+            continue;
+        }
+        try{
+            n = stoi(texto);
+            if(n > 7 || n <= 0){
+                cout<<"Error. Ingrese solo numeros del 1 al 7."<<endl;
+                continue;
+            }
+            return n;
+        }catch(invalid_argument& e){
+            cout<<"Error. Ingrese solo numeros enteros. "<<endl;
+        }catch(out_of_range& e){
+            cout<<"Error. El numero es demasiado grande."<<endl;
+        }catch(...){
+            cout<<"Error. Ingrese numeros."<<endl;
+        }
+    }
+}
+
+int main(){
+    int a = LeerNumeros("Ingrese un numeros del 1-7: ");
+    switch(a){
+        case 1:
+            cout << "El dia es: Lunes" << endl;
+            break;
+        case 2:
+            cout << "El dia es: Martes" << endl;
+            break;
+        case 3:
+            cout << "El dia es: Miercoles" << endl;
+            break;
+        case 4:
+            cout << "El dia es: Jueves" << endl;
+            break;
+        case 5:
+            cout << "El dia es: Viernes" << endl;
+            break;
+        case 6:
+            cout << "El dia es: Sabado" << endl;
+            break;
+        case 7:
+            cout << "El dia es: Domingo" << endl;
+            break;
+        default:
+            cout << "Dia no reconocido." << endl;
+            break;
+    }
+    return 0;
+}
